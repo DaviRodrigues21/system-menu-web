@@ -13,6 +13,7 @@ import { clearCart } from '@/store/cartSlice';
 import { useRouter } from 'next/navigation';
 import Finalizado from '@/components/Finalizado';
 import TransactionsService from '@/service/transactions.service';
+import enviarPedidoParaImpressao from '@/service/webSocket.service';
 
 const UserSv = new userService()
 
@@ -135,8 +136,13 @@ const Checkout = () => {
       if (dataForm.comprovante) {
         formData.append("comprovante", dataForm.comprovante);
       }
+      console.log(formData,"dataaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+      
 
       const response = await UserSv.createPedido(formData);
+      enviarPedidoParaImpressao(response.pedido, response.pedido.address);
+      console.log(response,"ressspooostaaaaa");
+      
 
       if (response?.cobranca) {
         setQrCodeGenerate(true);
