@@ -1,3 +1,4 @@
+'use client';
 import { useEffect } from "react";
 import qz from "qz-tray"; // Importa o QZ Tray para impressão
 
@@ -31,3 +32,4 @@ export default function PrinterClient() {
 
   return <h1>Cliente WebSocket para Impressão</h1>;
 }
+
